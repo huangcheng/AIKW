@@ -1,6 +1,9 @@
 import QtQuick
 
-Rectangle {
-    color: 'red'
-    anchors.fill: parent
+Item {
+    Input {
+        width: parent.width
+        height: 34
+        placeholder: '请输入'
+    }
 }

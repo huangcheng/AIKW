@@ -19,6 +19,8 @@ qt_add_qml_module(AIKW
               TitleBar.qml
               Configuration.qml
               Generation.qml
+              Title.qml
+              Input.qml
 )
 
 qt_add_resources(AIKW "fonts"
