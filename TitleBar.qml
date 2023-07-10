@@ -2,8 +2,7 @@ import QtQuick
 
 Item {
     id: root
-    property string selected: 'generate'
-    signal selectedChange(selected: string)
+    property string active: 'generation'
 
     FontLoader {
         id: sourceHanSansSCRegular
@@ -44,50 +43,45 @@ Item {
 
             states: [
                 State {
-                    name: 'generate'
-                    when: root.selected === 'generate'
+                    name: 'generation'
+                    when: root.active === 'generation'
                     PropertyChanges {
-                        target: generate
+                        target: generation
                         color: '#FFF'
                     }
                     PropertyChanges {
-                        target: generateText
+                        target: generationText
                         color: '#566EF0'
                     }
                 },
                 State {
-                    name: 'config'
-                    when: root.selected === 'config'
+                    name: 'configuration'
+                    when: root.active === 'configuration'
                     PropertyChanges {
-                        target: config
+                        target: configuration
                         color: '#FFF'
                     }
                     PropertyChanges {
-                        target: configText
+                        target: configurationText
                         color: '#566EF0'
                     }
                 }
             ]
 
             MouseArea {
-                id: generateContainer
+                id: generationContainer
                 width: 70
                 height: parent.height
 
-                onPressed: {
-                    const selected = 'generate'
-
-                    root.selected = selected
-                    root.selectedChange(selected)
-                }
+                onPressed: root.active = 'generation'
 
                 Rectangle {
-                    id: generate
+                    id: generation
                     anchors.fill: parent
                     color: 'transparent'
 
                     Text {
-                        id: generateText
+                        id: generationText
                         text: '生成'
 
                         color: '#FFF'
@@ -105,22 +99,17 @@ Item {
                 width: 70
                 height: parent.height
 
-                anchors.left: generateContainer.right
+                anchors.left: generationContainer.right
 
-                onPressed: {
-                    const selected = 'config'
-
-                    root.selected = selected
-                    root.selectedChange(selected)
-                }
+                onPressed: root.active = 'configuration'
 
                 Rectangle {
-                    id: config
+                    id: configuration
                     anchors.fill: parent
                     color: 'transparent'
 
                     Text {
-                        id: configText
+                        id: configurationText
                         text: '配置'
 
                         color: '#FFF'
