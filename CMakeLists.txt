@@ -4,7 +4,7 @@ project(AIKW VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Core)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Core Gui)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -15,12 +15,12 @@ qt_add_executable(AIKW
 qt_add_qml_module(AIKW
     URI AIKW
     VERSION 1.0
-    QML_FILES Main.qml
-              TitleBar.qml
-              Configuration.qml
-              Generation.qml
-              Title.qml
-              Input.qml
+    QML_FILES qml/Main.qml
+              qml/TitleBar.qml
+              qml/Configuration.qml
+              qml/Generation.qml
+              qml/Title.qml
+              qml/Input.qml
 )
 
 qt_add_resources(AIKW "fonts"
@@ -40,6 +40,7 @@ set_target_properties(AIKW PROPERTIES
 
 target_link_libraries(AIKW
     PRIVATE Qt6::Quick
+            Qt6::Gui
 )
 
 install(TARGETS AIKW

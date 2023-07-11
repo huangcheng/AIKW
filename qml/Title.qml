@@ -5,16 +5,6 @@ Rectangle {
     property alias title: _title.text
     property alias subTitle: _subTitle.text
 
-    FontLoader {
-        id: sourceHanSansSCRegular
-        source: 'qrc:/fonts/SourceHanSansSC-Regular.otf'
-    }
-
-    FontLoader {
-        id: sourceHanSansSCBold
-        source: 'qrc:/fonts/SourceHanSansSC-Bold.otf'
-    }
-
     RowLayout {
         id: container
         spacing: 8
@@ -23,6 +13,10 @@ Rectangle {
         width: parent.width
 
         Layout.alignment: Qt.AlignHCenter
+
+        FontLoader {
+            id: font
+        }
 
         Rectangle {
             id: indecator
@@ -36,19 +30,11 @@ Rectangle {
 
         Text {
             id: _title
-
-            font.family: sourceHanSansSCBold.font.family
-            font.bold: sourceHanSansSCBold.font.bold
-            font.pixelSize: 14
         }
         Text {
             id: _subTitle
 
             color: '#7F829F'
-
-            font.family: sourceHanSansSCRegular.font.family
-            font.bold: sourceHanSansSCBold.font.bold
-            font.pixelSize: 14
         }
     }
 }

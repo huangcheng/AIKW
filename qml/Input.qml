@@ -2,10 +2,6 @@ import QtQuick
 
 Rectangle {
     id: root
-    FontLoader {
-        id: sourceHanSansSCRegular
-        source: 'qrc:/fonts/SourceHanSansSC-Regular.otf'
-    }
 
     readonly property string placeholderColor: '#7F829F'
     readonly property string textColor: '#1D2126'
@@ -23,10 +19,6 @@ Rectangle {
         color: textColor
         width: parent.width - 20
 
-        font.family: sourceHanSansSCRegular.font.family
-        font.bold: sourceHanSansSCRegular.font.bold
-        font.pixelSize: 14
-
         anchors.centerIn: parent
 
         Text {
@@ -34,10 +26,6 @@ Rectangle {
             text: placeholder
             height: parent.height
             color: placeholderColor
-
-            font.family: sourceHanSansSCRegular.font.family
-            font.bold: sourceHanSansSCRegular.font.bold
-            font.pixelSize: 14
 
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter

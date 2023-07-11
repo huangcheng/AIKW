@@ -7,16 +7,6 @@ ColumnLayout {
 
     Layout.fillWidth: true
 
-    FontLoader {
-        id: sourceHanSansSCRegular
-        source: 'qrc:/fonts/SourceHanSansSC-Regular.otf'
-    }
-
-    FontLoader {
-        id: sourceHanSansSCBold
-        source: 'qrc:/fonts/SourceHanSansSC-Bold.otf'
-    }
-
     ColumnLayout {
         spacing: 10
 

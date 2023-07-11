@@ -4,16 +4,6 @@ Item {
     id: root
     property string active: 'generation'
 
-    FontLoader {
-        id: sourceHanSansSCRegular
-        source: 'qrc:/fonts/SourceHanSansSC-Regular.otf'
-    }
-
-    FontLoader {
-        id: sourceHanSansSCBold
-        source: 'qrc:/fonts/SourceHanSansSC-Bold.otf'
-    }
-
     Rectangle {
         height: parent.height
         width: parent.width
@@ -22,12 +12,12 @@ Item {
 
         Text {
             id: logo
-            text: "AIKW"
+            text: 'AIKW'
             color: '#FFF'
 
-            font.family: sourceHanSansSCRegular.font.family
-            font.bold: sourceHanSansSCBold.font.bold
+            font.bold: true
             font.pixelSize: 24
+            font.styleName: 'Bold'
 
             anchors.left: parent.left
             anchors.leftMargin: 20
@@ -86,10 +76,6 @@ Item {
 
                         color: '#FFF'
 
-                        font.family: sourceHanSansSCRegular.font
-                        font.weight: 500
-                        font.pixelSize: 14
-
                         anchors.centerIn: parent
                     }
                 }
@@ -114,10 +100,6 @@ Item {
 
                         color: '#FFF'
 
-                        font.family: sourceHanSansSCRegular.font
-                        font.weight: 500
-                        font.pixelSize: 14
-
                         anchors.centerIn: parent
                     }
                 }
@@ -135,10 +117,6 @@ Item {
                 text: '开发说明'
 
                 color: '#FFF'
-
-                font.pixelSize: 14
-                font.family: sourceHanSansSCRegular.font.family
-                font.weight: 400
             }
         }
     }
