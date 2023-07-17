@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
         qDebug() << "Failed to load font Source Han Sans SC Bold";
     }
 
-    QFont font = QFontDatabase::font("Source Han Sans SC", "Regular", 14);
+    QFont font = QFontDatabase::font("Source Han Sans SC", "Regular", -1);
 
     app.setFont(font);
 

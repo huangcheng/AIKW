@@ -21,6 +21,7 @@ qt_add_qml_module(AIKW
               qml/Generation.qml
               qml/Title.qml
               qml/Input.qml
+              qml/InputArea.qml
 )
 
 qt_add_resources(AIKW "fonts"
