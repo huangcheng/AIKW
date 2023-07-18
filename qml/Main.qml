@@ -6,6 +6,8 @@ Window {
     id: window
     width: Screen.desktopAvailableWidth * 0.6
     height: Screen.desktopAvailableHeight * 0.74
+    minimumWidth: 400
+    minimumHeight: 280
     visible: true
     title: qsTr('AIKW')
 
@@ -28,6 +30,7 @@ Window {
     ScrollView {
         height: window.height - title.height - 40
         width: window.width - 40
+        contentWidth: availableWidth
         clip: true
 
         anchors.top: title.bottom
@@ -37,12 +40,10 @@ Window {
 
         Loader {
             id: loader
+
             source: 'Generation.qml'
 
             width: parent.width
-
-            anchors.top: parent.top
-            anchors.left: parent.left
         }
     }
 }

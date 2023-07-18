@@ -31,6 +31,11 @@ qt_add_resources(AIKW "fonts"
           fonts/SourceHanSansSC-Bold.otf
 )
 
+qt_add_resources(AIKW "images"
+    PREFIX "/"
+    FILES images/PlusCircleF.svg
+)
+
 set_target_properties(AIKW PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

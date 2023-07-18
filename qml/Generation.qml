@@ -9,18 +9,15 @@ ColumnLayout {
 
     property double gap: 10
 
-    Layout.fillWidth: true
-
     ColumnLayout {
         spacing: root.gap
-
-        Layout.fillWidth: true
 
         Title {
             title: '以图生图'
             subTitle: '( Midjourney上传后的链接)'
 
             Layout.preferredHeight: 14
+            Layout.fillWidth: true
         }
 
         Input {
@@ -34,11 +31,11 @@ ColumnLayout {
     ColumnLayout {
         spacing: root.gap
 
-        Layout.fillWidth: true
-
         Title {
             title: '描述'
+
             Layout.preferredHeight: 14
+            Layout.fillWidth: true
         }
 
         InputArea {
@@ -46,6 +43,22 @@ ColumnLayout {
 
             Layout.preferredHeight: 80
             Layout.fillWidth: true
+        }
+    }
+
+
+    ColumnLayout {
+        spacing: root.gap
+
+        Title {
+            title: '描述 (权重)'
+
+            Layout.preferredHeight: 14
+            Layout.fillWidth: true
+
+            hasAdd: true
+            onAdded: {
+            }
         }
     }
 
