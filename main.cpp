@@ -1,8 +1,11 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QFontDatabase>
 #include <QFont>
 #include <QDebug>
+
+#include "generation.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,10 +25,17 @@ int main(int argc, char *argv[])
 
     app.setFont(font);
 
+    Generation generation;
+
     QQmlApplicationEngine engine;
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
         &app, []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
+
+    QQmlContext *context = engine.rootContext();
+
+    context->setContextProperty("generation", &generation);
+
     engine.loadFromModule("AIKW", "Main");
 
     return app.exec();

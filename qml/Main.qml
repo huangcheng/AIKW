@@ -21,6 +21,8 @@ Window {
         onActiveChanged: {
             if (active === 'generation') {
                 loader.source = 'Generation.qml'
+
+                console.log(generation.generate())
             } else {
                 loader.source = 'Configuration.qml'
             }

@@ -22,6 +22,11 @@ ColumnLayout {
 
         Input {
             placeholder: '图片链接'
+            text: generation.url ?? ''
+
+            onTextChanged: {
+                generation.url = text
+            }
 
             Layout.fillWidth: true
             Layout.preferredHeight: 34
@@ -40,6 +45,12 @@ ColumnLayout {
 
         InputArea {
             placeholder: '请输入'
+
+            text: generation.description ?? ''
+
+            onTextChanged: {
+                generation.description = text
+            }
 
             Layout.preferredHeight: 80
             Layout.fillWidth: true

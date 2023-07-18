@@ -1,14 +1,15 @@
 import QtQuick
 
 Rectangle {
-    id: root
-    color: '#F2F4F5'
-
     readonly property string placeholderColor: '#7F829F'
     readonly property string textColor: '#1D2126'
 
     property alias text: edit.text
     property string placeholder: ''
+
+    id: root
+    color: '#F2F4F5'
+    radius: 4
 
     Flickable {
          id: flick
