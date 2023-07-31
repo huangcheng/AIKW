@@ -76,8 +76,8 @@ ColumnLayout {
     Component.onCompleted: {
         const { os } = Qt.platform
 
-            if (os === 'windows') {
-                root.gap = 20
-            }
+        if (os === 'windows') {
+            root.gap = 20
         }
     }
+}

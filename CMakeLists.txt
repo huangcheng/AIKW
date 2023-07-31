@@ -9,6 +9,7 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Core Gui)
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(AIKW
+
     generation.h
     generation.cpp
     main.cpp
@@ -24,6 +25,8 @@ qt_add_qml_module(AIKW
               qml/Title.qml
               qml/Input.qml
               qml/InputArea.qml
+    SOURCES   description.h
+              description.cpp
 )
 
 qt_add_resources(AIKW "fonts"
