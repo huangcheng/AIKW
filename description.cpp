@@ -21,12 +21,12 @@ void Description::setDescription(const QString &description)
     }
 }
 
-int Description::weight() const
+QString Description::weight() const
 {
     return m_weight;
 }
 
-void Description::setWeight(const int weight)
+void Description::setWeight(const QString& weight)
 {
     if (m_weight != weight)
     {

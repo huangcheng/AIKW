@@ -13,6 +13,8 @@ qt_add_executable(AIKW
     generation.h
     generation.cpp
     main.cpp
+    description.h
+    description.cpp
 )
 
 qt_add_qml_module(AIKW
@@ -25,8 +27,7 @@ qt_add_qml_module(AIKW
               qml/Title.qml
               qml/Input.qml
               qml/InputArea.qml
-    SOURCES   description.h
-              description.cpp
+              qml/Description.qml
 )
 
 qt_add_resources(AIKW "fonts"

@@ -68,8 +68,33 @@ ColumnLayout {
             Layout.fillWidth: true
 
             hasAdd: true
+
             onAdded: {
+                generation.descriptions_add()
             }
+        }
+
+        GridLayout {
+            columns: 3
+
+            Repeater {
+                model: generation.descriptions
+
+                Description {
+                    required property int index
+                    description: generation.descriptions[index].description
+                    weight: generation.descriptions[index].weight
+
+                    onDescriptionChanged: {
+                        generation.descriptions[index].description = description;
+                    }
+
+                    onWeightChanged: {
+                        generation.descriptions[index].weight = weight;
+                    }
+                }
+            }
+
         }
     }
 

@@ -70,3 +70,26 @@ QString Generation::generate()
 
     return result.trimmed();
 }
+
+void Generation::descriptions_add()
+{
+    m_descriptions.append(new Description());
+
+    emit descriptionsChanged();
+}
+
+void Generation::descriptions_remove(size_t index)
+{
+    Description* item = m_descriptions.at(index);
+
+    if (item != nullptr)
+    {
+        delete item;
+
+        item = nullptr;
+
+        m_descriptions.removeAt(index);
+
+        emit descriptionsChanged();
+    }
+}

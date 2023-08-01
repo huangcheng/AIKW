@@ -14,7 +14,7 @@ class Generation : public QObject
     Q_OBJECT
     Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged FINAL)
     Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged FINAL)
-    Q_PROPERTY(QQmlListProperty<Description> descriptions READ descriptions FINAL)
+    Q_PROPERTY(QQmlListProperty<Description> descriptions READ descriptions NOTIFY descriptionsChanged FINAL)
 public:
     explicit Generation(QObject *parent = nullptr);
     ~Generation();
@@ -35,11 +35,8 @@ private:
 
 public:
     Q_INVOKABLE QString generate();
-
-private:
-    static void append_description(QQmlListProperty<Description>* list, Description* description);
-    static qsizetype descriptions_count(QQmlListProperty<Description> *list);
-
+    Q_INVOKABLE void descriptions_add();
+    Q_INVOKABLE void descriptions_remove(size_t index);
 signals:
     void urlChanged();
     void descriptionChanged();
