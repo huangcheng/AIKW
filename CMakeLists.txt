@@ -40,6 +40,8 @@ qt_add_resources(AIKW "fonts"
 qt_add_resources(AIKW "images"
     PREFIX "/"
     FILES images/PlusCircleF.svg
+          images/Trash.svg
+          images/TrashHover.svg
 )
 
 set_target_properties(AIKW PROPERTIES

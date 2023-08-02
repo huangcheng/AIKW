@@ -76,6 +76,8 @@ ColumnLayout {
 
         GridLayout {
             columns: 3
+            rowSpacing: 10
+            columnSpacing: 40
 
             Repeater {
                 model: generation.descriptions
@@ -91,6 +93,10 @@ ColumnLayout {
 
                     onWeightChanged: {
                         generation.descriptions[index].weight = weight;
+                    }
+
+                    onDeleted: {
+                        generation.descriptions_remove(index)
                     }
                 }
             }
