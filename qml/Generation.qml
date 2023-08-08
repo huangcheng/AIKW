@@ -3,6 +3,8 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Window
 
+import Components
+
 ColumnLayout {
     id: root
     spacing: 20
@@ -103,6 +105,8 @@ ColumnLayout {
 
         }
     }
+
+    ParamSelect {}
 
     Component.onCompleted: {
         const { os } = Qt.platform
