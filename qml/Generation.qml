@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Window
 
-import Components
+import components
 
 ColumnLayout {
     id: root

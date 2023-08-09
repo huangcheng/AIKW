@@ -4,7 +4,6 @@
 #include <QFontDatabase>
 #include <QFont>
 #include <QDebug>
-#include <QSqlDatabase>
 
 #include "generation.h"
 
