@@ -105,12 +105,7 @@ void Parameter::clearParameters()
 
 void Parameter::fetchParameters()
 {
-    if (m_category.isEmpty())
-    {
-        clearParameters();
-
-        emit parametersChanged();
-    }
+    clearParameters();
 
     QSqlQuery query(m_database);
 

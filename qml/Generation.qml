@@ -110,52 +110,6 @@ ColumnLayout {
         spacing: root.gap
 
         Title {
-            title: '描述 (权重)'
-
-            Layout.preferredHeight: 14
-            Layout.fillWidth: true
-
-            hasAdd: true
-
-            onAdded: {
-                generation.descriptions_add()
-            }
-        }
-
-        GridLayout {
-            columns: 3
-            rowSpacing: 10
-            columnSpacing: 40
-
-            Repeater {
-                model: generation.descriptions
-
-                Description {
-                    required property int index
-                    description: generation.descriptions[index].description
-                    weight: generation.descriptions[index].weight
-
-                    onDescriptionChanged: {
-                        generation.descriptions[index].description = description;
-                    }
-
-                    onWeightChanged: {
-                        generation.descriptions[index].weight = weight;
-                    }
-
-                    onDeleted: {
-                        generation.descriptions_remove(index)
-                    }
-                }
-            }
-
-        }
-    }
-
-    ColumnLayout {
-        spacing: root.gap
-
-        Title {
             title: '常用'
 
             Layout.preferredHeight: 14
@@ -176,7 +130,21 @@ ColumnLayout {
             Repeater {
                 model: generation.parameters
 
-                ParamSelect {}
+                ParamSelect {
+                    required property int index
+
+                    onParameterChanged: (param) => {
+                                         generation.parameters[index].description = param;
+                                        }
+
+                    onWeightChanged: {
+                        generation.parameters[index].weight = weight;
+                    }
+
+                    onDeleted: {
+                        generation.parameters_remove(index)
+                    } 
+                }
             }
 
         }
