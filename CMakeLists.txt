@@ -24,7 +24,6 @@ qt_add_qml_module(appAIKW
               qml/Configuration.qml
               qml/Generation.qml
               qml/Title.qml
-              qml/Input.qml
               qml/InputArea.qml
               qml/Description.qml
 

@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 
+import components
+
 RowLayout {
     property alias description: d.text
     property alias weight: w.text
