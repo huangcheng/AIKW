@@ -4,32 +4,32 @@ import QtQuick.Controls
 
 RowLayout {
     property alias weight: w.text
+    property alias parameter: p.parameter
     signal deleted()
-    signal parameterChanged(param: string)
 
     id: root
 
     spacing: 10
 
     Parameter {
-        id: parameter
+        id: p
     }
 
     ComboBox {
-        currentIndex: -1
-        model: parameter.categories
+        currentIndex: p.categories.findIndex(({ name }) => name === p.category)
+        model: p.categories
 
         textRole: 'description'
         valueRole: 'name'
 
         onActivated: (index) => {
-                        parameter.category = parameter.categories[index].name
+                        p.category = p.categories[index].name
                      }
     }
 
     ComboBox {
-        currentIndex: -1
-        model: parameter.parameters
+        currentIndex: p.parameters.findIndex(({ name }) => name === p.parameter)
+        model: p.parameters
 
         textRole: 'description'
         valueRole: 'name'
@@ -37,10 +37,14 @@ RowLayout {
         Layout.fillWidth: true
 
         onActivated: (index) => {
-                         const param = parameter.parameters[index].name
-
-                         parameterChanged(param)
+                         p.parameter = p.parameters[index].name
                      }
+
+        onModelChanged: {
+            if (model.length > 0 && !parameter) {
+                p.parameter = p.parameters[0].name
+            }
+        }
     }
 
     Input {

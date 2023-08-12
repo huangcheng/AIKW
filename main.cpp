@@ -3,9 +3,11 @@
 #include <QQmlContext>
 #include <QFontDatabase>
 #include <QFont>
+#include <QSqlDatabase>
 #include <QDebug>
 
 #include "generation.h"
+#include "components/parameter.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +26,15 @@ int main(int argc, char *argv[])
     QFont font = QFontDatabase::font("Source Han Sans SC", "Regular", -1);
 
     app.setFont(font);
+
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE", DATABASE_NAME);
+    database.setDatabaseName("db.sqlite");
+    database.open();
+
+    if (database.isOpen() || database.isOpenError())
+    {
+        app.exit(-1);
+    }
 
     Generation generation;
 

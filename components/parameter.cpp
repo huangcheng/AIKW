@@ -9,8 +9,8 @@ Parameter::Parameter(QObject *parent)
     }
     else
     {
-        m_database = QSqlDatabase::addDatabase("QSQLITE", "midjourney");
-        m_database.setDatabaseName(QCoreApplication::applicationDirPath() + QDir::separator() + "db.sqlite");
+        m_database = QSqlDatabase::addDatabase("QSQLITE", DATABASE_NAME);
+        m_database.setDatabaseName("db.sqlite");
         m_database.open();
     }
 
@@ -27,15 +27,6 @@ Parameter::~Parameter()
     }
 
     m_categories.clear();
-
-//    if (m_database.isOpen())
-//    {
-//        m_database.close();
-//    }
-//    else
-//    {
-//        m_database.removeDatabase(DATABASE_NAME);
-//    }
 
     clearParameters();
 
@@ -62,6 +53,11 @@ QString Parameter::category() const
     return m_category;
 }
 
+QString Parameter::parameter() const
+{
+    return m_parameter;
+}
+
 void Parameter::setCategory(const QString &category)
 {
     if (m_category != category)
@@ -69,6 +65,28 @@ void Parameter::setCategory(const QString &category)
         m_category = category;
 
         emit categoryChanged();
+    }
+}
+
+void Parameter::setParameter(const QString &parameter)
+{
+    if (m_parameter != parameter)
+    {
+        if (m_categories.isEmpty())
+        {
+            fetchCategories();
+        }
+
+        if (m_category.isEmpty())
+        {
+            m_category = fetchCategoryByParameter(parameter);
+
+            emit categoryChanged();
+        }
+
+        m_parameter = parameter;
+
+        emit parameterChanged();
     }
 }
 
@@ -101,6 +119,28 @@ void Parameter::clearParameters()
     }
 
     m_parameters.clear();
+}
+
+QString Parameter::fetchCategoryByParameter(const QString &parameter)
+{
+    QSqlQuery query(m_database);
+
+    query.prepare("SELECT category FROM Category_Parameter WHERE parameter = ?");
+    query.bindValue(0, parameter);
+    query.exec();
+
+    QString result;
+
+    while (query.next())
+    {
+        QString category = query.value(0).toString();
+
+        result = category;
+    }
+
+    query.finish();
+
+    return result;
 }
 
 void Parameter::fetchParameters()

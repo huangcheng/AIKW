@@ -133,8 +133,11 @@ ColumnLayout {
                 ParamSelect {
                     required property int index
 
+                    parameter: generation.parameters[index].description
+                    weight: generation.parameters[index].weight
+
                     onParameterChanged: (param) => {
-                                         generation.parameters[index].description = param;
+                                         generation.parameters[index].description = parameter;
                                         }
 
                     onWeightChanged: {
