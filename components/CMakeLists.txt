@@ -7,6 +7,7 @@ qt_add_qml_module(components
     QML_FILES
         ParamSelect.qml
         Input.qml
+        Select.qml
     SOURCES
         parameter.h
         parameter.cpp

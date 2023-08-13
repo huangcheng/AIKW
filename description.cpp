@@ -11,7 +11,7 @@ QString Description::description() const
     return m_description;
 }
 
-void Description::setDescription(const QString &description)
+void Description::setDescription(const QString& description)
 {
     if (m_description != description)
     {

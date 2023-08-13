@@ -43,6 +43,14 @@ qt_add_resources(appAIKW "images"
     FILES images/PlusCircleF.svg
           images/Trash.svg
           images/TrashHover.svg
+          images/Down.svg
+)
+
+qt_add_resources(appAIKW "qt_quick_controls_2_conf"
+    PREFIX
+        "/"
+    FILES
+        "qtquickcontrols2.conf"
 )
 
 set_target_properties(appAIKW PROPERTIES

@@ -15,26 +15,33 @@ RowLayout {
         id: p
     }
 
-    ComboBox {
+    Select {
         currentIndex: p.categories.findIndex(({ name }) => name === p.category)
         model: p.categories
 
         textRole: 'description'
         valueRole: 'name'
+        placeholder: '类别'
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: 34
+
 
         onActivated: (index) => {
                         p.category = p.categories[index].name
                      }
     }
 
-    ComboBox {
+    Select {
         currentIndex: p.parameters.findIndex(({ name }) => name === p.parameter)
         model: p.parameters
 
         textRole: 'description'
         valueRole: 'name'
+        placeholder: '请选择'
 
         Layout.fillWidth: true
+        Layout.preferredHeight: 34
 
         onActivated: (index) => {
                          p.parameter = p.parameters[index].name

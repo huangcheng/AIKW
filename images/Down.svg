@@ -1,0 +1,15 @@
+<svg id="后_icon功能组" data-name="后 icon功能组" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #7f829f;
+      }
+    </style>
+  </defs>
+  <rect id="safe" class="cls-1" width="14" height="14"/>
+  <path id="下拉Down" class="cls-2" d="M134.7,127.22a.714.714,0,0,0-.506.21l-4.558,4.558-4.558-4.558a.716.716,0,1,0-1.013,1.013l5.064,5.063a.715.715,0,0,0,1.013,0l5.064-5.063a.717.717,0,0,0-.506-1.223Z" transform="translate(-122.633 -122.452)"/>
+</svg>
