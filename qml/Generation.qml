@@ -86,8 +86,11 @@ ColumnLayout {
 
                 Description {
                     required property int index
-                    description: generation.descriptions[index].description
-                    weight: generation.descriptions[index].weight
+                    required property string description
+                    required property string weight
+
+                    description: description
+                    weight: weight
 
                     onDescriptionChanged: {
                         generation.descriptions[index].description = description;
@@ -132,9 +135,11 @@ ColumnLayout {
 
                 ParamSelect {
                     required property int index
+                    required property string description
+                    required property string weight
 
-                    parameter: generation.parameters[index].description
-                    weight: generation.parameters[index].weight
+                    parameter: description
+                    weight: weight
 
                     onParameterChanged: (param) => {
                                          generation.parameters[index].description = parameter;
@@ -146,14 +151,29 @@ ColumnLayout {
 
                     onDeleted: {
                         generation.parameters_remove(index)
-                    } 
+                    }
                 }
             }
 
         }
     }
 
+    ColumnLayout {
+        spacing: root.gap
 
+        Title {
+            title: 'MJ官方参数'
+
+            Layout.preferredHeight: 14
+            Layout.fillWidth: true
+        }
+
+        GridLayout {
+            columns: 3
+            rowSpacing: 10
+            columnSpacing: 40
+        }
+    }
 
     Component.onCompleted: {
         const { os } = Qt.platform

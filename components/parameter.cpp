@@ -10,7 +10,7 @@ Parameter::Parameter(QObject *parent)
     else
     {
         m_database = QSqlDatabase::addDatabase("QSQLITE", DATABASE_NAME);
-        m_database.setDatabaseName("db.sqlite");
+        m_database.setDatabaseName(QCoreApplication::applicationDirPath() + QDir::separator() + "db.sqlite");
         m_database.open();
     }
 

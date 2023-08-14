@@ -7,6 +7,7 @@
 #include <QQmlListProperty>
 #include <QSqlQuery>
 #include <QList>
+#include <QCoreApplication>
 #include <QDir>
 #include <QtQml/qqmlregistration.h>
 

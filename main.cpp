@@ -4,7 +4,8 @@
 #include <QFontDatabase>
 #include <QFont>
 #include <QSqlDatabase>
-#include <QDebug>
+#include <QCoreApplication>
+#include <QDir>
 
 #include "generation.h"
 #include "components/parameter.h"
@@ -28,7 +29,8 @@ int main(int argc, char *argv[])
     app.setFont(font);
 
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE", DATABASE_NAME);
-    database.setDatabaseName("db.sqlite");
+    qDebug() << QCoreApplication::applicationDirPath() + "db.sqlite";
+    database.setDatabaseName(QCoreApplication::applicationDirPath() + QDir::separator() + "db.sqlite");
     database.open();
 
     if (database.isOpen() || database.isOpenError())
