@@ -26,6 +26,7 @@ qt_add_qml_module(appAIKW
               qml/Title.qml
               qml/InputArea.qml
               qml/Description.qml
+              qml/ALabel.qml
 
 )
 

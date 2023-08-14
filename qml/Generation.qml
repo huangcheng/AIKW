@@ -152,7 +152,7 @@ ColumnLayout {
     }
 
     ColumnLayout {
-        id: offical
+        spacing: root.gap
 
         Title {
             title: 'MJ官方参数'
@@ -165,6 +165,169 @@ ColumnLayout {
             columns: 3
             rowSpacing: 10
             columnSpacing: 40
+
+            RowLayout {
+                ALabel {
+                    text: '风格化'
+
+                    Layout.preferredHeight: 36
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                Input {
+                    placeholder: '默认100, 0-1000'
+
+                    text: generation.style
+
+                    onTextChanged: {
+                        generation.style = text
+                    }
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+
+            RowLayout {
+                ALabel {
+                    text: '版本'
+
+                    Layout.preferredHeight: 36
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                Select {
+                    currentIndex: model.findIndex((item) => item === generation.version)
+                    model: ['--v 5.2', '--v 5.1', '--niji 5 --style cute', '--niji 5 --style scenic']
+                    placeholder: '不同版本模型'
+
+                    onActivated: (index) => {
+                        generation.version = model[index]
+                    }
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 34
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+
+            RowLayout {
+                ALabel {
+                    text: '质量'
+
+                    Layout.preferredHeight: 36
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                Input {
+                    placeholder: '0-100, 值越大变化越大'
+
+                    text: generation.quality
+
+                    onTextChanged: {
+                        generation.quality = text
+                    }
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+
+            RowLayout {
+                ALabel {
+                    text: '混乱'
+
+                    Layout.preferredHeight: 36
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                Input {
+                    placeholder: '0-100, 改变结果的多样性'
+
+                    text: generation.chaos
+
+                    onTextChanged: {
+                        generation.chaos = text
+                    }
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+
+            RowLayout {
+                ALabel {
+                    text: '种子'
+
+                    Layout.preferredHeight: 36
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                Input {
+                    placeholder: '控制图片的相似性'
+
+                    text: generation.seed
+
+                    onTextChanged: {
+                        generation.seed = text
+                    }
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+
+            RowLayout {
+                ALabel {
+                    text: '比例'
+
+                    Layout.preferredHeight: 36
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                Select {
+                    currentIndex: model.findIndex((item) => item === generation.aspect)
+                    model: ['3:4', '16:9', '21:9', '9:16']
+                    placeholder: '宽高比'
+
+                    onActivated: (index) => {
+                        generation.aspect = model[index]
+                    }
+
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 34
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+
+            RowLayout {
+                ALabel {
+                    text: '重复'
+
+                    Layout.preferredHeight: 36
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                Input {
+                    placeholder: '控制图片的相似性'
+
+                    text: generation.repeat
+
+                    onTextChanged: {
+                        generation.repeat = text
+                    }
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
         }
     }
 
@@ -239,7 +402,7 @@ ColumnLayout {
         InputArea {
             readOnly: true
 
-            text: generation.result ?? ''
+            text: generation.prompt ?? ''
 
             Layout.fillWidth: true
             Layout.preferredHeight: 80

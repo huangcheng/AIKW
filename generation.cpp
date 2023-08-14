@@ -1,7 +1,7 @@
 #include "generation.h"
 
 Generation::Generation(QObject *parent)
-    : QObject{parent}, m_result{"/imagine prompt:"}
+    : QObject{parent}, m_prompt{"/imagine prompt:"}
 {
     for (size_t i = 0; i < 3; ++i)
     {
@@ -22,6 +22,14 @@ Generation::Generation(QObject *parent)
     connect(this, &Generation::parametersChanged, this, &Generation::generate);
     connect(this, &Generation::urlChanged, this, &Generation::generate);
     connect(this, &Generation::descriptionChanged, this, &Generation::generate);
+    connect(this, &Generation::styleChanged, this, &Generation::generate);
+    connect(this, &Generation::versionChanged, this, &Generation::generate);
+    connect(this, &Generation::qualityChanged, this, &Generation::generate);
+    connect(this, &Generation::chaosChanged, this, &Generation::generate);
+    connect(this, &Generation::seedChanged, this, &Generation::generate);
+    connect(this, &Generation::aspectChanged, this, &Generation::generate);
+    connect(this, &Generation::noChanged, this, &Generation::generate);
+    connect(this, &Generation::repeatChanged, this, &Generation::generate);
 }
 
 Generation::~Generation()
@@ -54,6 +62,14 @@ Generation::~Generation()
     disconnect(this, &Generation::parametersChanged, this, &Generation::generate);
     disconnect(this, &Generation::urlChanged, this, &Generation::generate);
     disconnect(this, &Generation::descriptionChanged, this, &Generation::generate);
+    disconnect(this, &Generation::styleChanged, this, &Generation::generate);
+    disconnect(this, &Generation::versionChanged, this, &Generation::generate);
+    disconnect(this, &Generation::qualityChanged, this, &Generation::generate);
+    disconnect(this, &Generation::chaosChanged, this, &Generation::generate);
+    disconnect(this, &Generation::seedChanged, this, &Generation::generate);
+    disconnect(this, &Generation::aspectChanged, this, &Generation::generate);
+    disconnect(this, &Generation::noChanged, this, &Generation::generate);
+    disconnect(this, &Generation::repeatChanged, this, &Generation::generate);
 }
 
 QString Generation::url() const
@@ -144,9 +160,49 @@ void Generation::generate()
         }
     }
 
-    m_result = result.trimmed();
+    if (!m_style.isEmpty())
+    {
+        result += " --s " + m_style;
+    }
 
-    emit resultChanged();
+    if (!m_version.isEmpty())
+    {
+        result += " --v " + m_version;
+    }
+
+    if (!m_quality.isEmpty())
+    {
+        result += " --q " + m_quality;
+    }
+
+    if (!m_chaos.isEmpty())
+    {
+        result += " --c " + m_chaos;
+    }
+
+    if (!m_seed.isEmpty())
+    {
+        result += " --seed " + m_seed;
+    }
+
+    if (!m_aspect.isEmpty())
+    {
+        result += " --ar " + m_aspect;
+    }
+
+    if (!m_no.isEmpty())
+    {
+        result += " --no " + m_no;
+    }
+
+    if (!m_repeat.isEmpty())
+    {
+        result += " --r " + m_repeat;
+    }
+
+    m_prompt = result.trimmed();
+
+    emit promptChanged();
 }
 
 void Generation::descriptions_add()
@@ -211,22 +267,31 @@ void Generation::parameters_remove(size_t index)
     }
 }
 
-QString Generation::result() const
+QString Generation::prompt() const
 {
-    return m_result;
+    return m_prompt;
 }
 
 void Generation::copy()
 {
     QClipboard* clipboard = QGuiApplication::clipboard();
 
-    clipboard->setText(m_result);
+    clipboard->setText(m_prompt);
 }
 
 void Generation::clear() {
-    m_url = "";
-    m_description = "";
-    m_result = "/imagine prompt:";
+    m_prompt = "/imagine prompt:";
+
+    setUrl("");
+    setDescription("");
+    setStyle("");
+    setVersion("");
+    setQuality("");
+    setChaos("");
+    setSeed("");
+    setNo("");
+    setAspect("");
+    setRepeat("");
 
     for (auto iter = m_descriptions.begin(); iter != m_descriptions.end(); ++iter)
     {
@@ -240,9 +305,111 @@ void Generation::clear() {
         (*iter)->setWeight("");
     }
 
-    emit urlChanged();
-    emit descriptionChanged();
+    emit promptChanged();
     emit parametersChanged();
     emit descriptionsChanged();
-    emit resultChanged();
+}
+
+QString Generation::style() const {
+    return m_style;
+}
+
+void Generation::setStyle(const QString &style) {
+    if (style != m_style)
+    {
+        m_style = style;
+
+        emit styleChanged();
+    }
+}
+
+QString Generation::version() const {
+    return m_version;
+}
+
+void Generation::setVersion(const QString &version) {
+    if (version != m_version)
+    {
+        m_version = version;
+
+        emit versionChanged();
+    }
+}
+
+QString Generation::quality() const {
+    return m_quality;
+}
+
+void Generation::setQuality(const QString &quality) {
+    if (quality != m_quality)
+    {
+        m_quality = quality;
+
+        emit qualityChanged();
+    }
+}
+
+QString Generation::chaos() const {
+    return m_chaos;
+}
+
+void Generation::setChaos(const QString &chaos) {
+    if (chaos != m_chaos)
+    {
+        m_chaos = chaos;
+
+        emit chaosChanged();
+    }
+}
+
+QString Generation::seed() const {
+    return m_seed;
+}
+
+void Generation::setSeed(const QString &seed) {
+    if (seed != m_seed)
+    {
+        m_seed = seed;
+
+        emit seedChanged();
+    }
+}
+
+QString Generation::aspect() const {
+    return m_aspect;
+}
+
+void Generation::setAspect(const QString &aspect) {
+    if (aspect != m_aspect)
+    {
+        m_aspect = aspect;
+
+        emit aspectChanged();
+    }
+}
+
+QString Generation::no() const {
+    return m_no;
+}
+
+void Generation::setNo(const QString &no) {
+    if (no != m_no)
+    {
+        m_no = no;
+
+        emit noChanged();
+    }
+}
+
+QString Generation::repeat() const {
+    return m_repeat;
+}
+
+void Generation::setRepeat(const QString &repeat) {
+    if (repeat != m_repeat)
+    {
+        m_repeat = repeat;
+
+        emit repeatChanged();
+    }
 }
