@@ -29,12 +29,14 @@ int main(int argc, char *argv[])
     app.setFont(font);
 
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE", DATABASE_NAME);
-    qDebug() << QCoreApplication::applicationDirPath() + "db.sqlite";
+
     database.setDatabaseName(QCoreApplication::applicationDirPath() + QDir::separator() + "db.sqlite");
     database.open();
 
-    if (database.isOpen() || database.isOpenError())
+    if (!database.isOpen() || database.isOpenError())
     {
+        qDebug() << "Failed to open the database";
+
         app.exit(-1);
     }
 

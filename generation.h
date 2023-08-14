@@ -5,6 +5,8 @@
 #include <QString>
 #include <QDebug>
 #include <QList>
+#include <QClipboard>
+#include <QGuiApplication>
 #include <QQmlListProperty>
 
 #include "description.h"
@@ -48,6 +50,8 @@ public:
     Q_INVOKABLE void descriptions_remove(size_t index);
     Q_INVOKABLE void parameters_add();
     Q_INVOKABLE void parameters_remove(size_t index);
+    Q_INVOKABLE void copy();
+    Q_INVOKABLE void clear();
 
 signals:
     void urlChanged();

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #566ef0;
+        stroke: rgba(0,0,0,0);
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="Copy" transform="translate(-0.304)">
+    <g id="边缘框" transform="translate(0)">
+      <rect id="边缘框-2" data-name="边缘框" class="cls-1" width="16" height="16" transform="translate(0.304)"/>
+    </g>
+    <g id="组_6460" data-name="组 6460" transform="translate(1.94 1.262)">
+      <path id="路径_4250" data-name="路径 4250" class="cls-1" d="M55.755,964.778h6.191a.653.653,0,0,1,.652.652V973h.985v-9.035H55.755Z" transform="translate(-52.16 -962.659)"/>
+      <path id="联合_344" data-name="联合 344" class="cls-2" d="M.652,13.476A.652.652,0,0,1,0,12.824V2.771a.652.652,0,0,1,.652-.652H2.29V.652A.653.653,0,0,1,2.942,0h9.134a.652.652,0,0,1,.652.652v10.34a.652.652,0,0,1-.652.652H10.438v1.18a.653.653,0,0,1-.652.652Zm.653-1.3H9.134V3.423H1.305ZM3.594,2.118H9.786a.653.653,0,0,1,.652.652V10.34h.985V1.3H3.594ZM3.262,10a.652.652,0,1,1,0-1.3H7.177a.652.652,0,0,1,0,1.3Zm0-2.763a.652.652,0,1,1,0-1.3H7.177a.652.652,0,0,1,0,1.3Z"/>
+    </g>
+  </g>
+</svg>

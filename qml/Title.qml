@@ -11,7 +11,6 @@ RowLayout {
     spacing: 8
 
     height: 16
-    width: parent.width
 
     FontLoader {
         id: font

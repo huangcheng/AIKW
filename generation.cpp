@@ -211,6 +211,38 @@ void Generation::parameters_remove(size_t index)
     }
 }
 
-QString Generation::result() const {
+QString Generation::result() const
+{
     return m_result;
+}
+
+void Generation::copy()
+{
+    QClipboard* clipboard = QGuiApplication::clipboard();
+
+    clipboard->setText(m_result);
+}
+
+void Generation::clear() {
+    m_url = "";
+    m_description = "";
+    m_result = "/imagine prompt:";
+
+    for (auto iter = m_descriptions.begin(); iter != m_descriptions.end(); ++iter)
+    {
+        (*iter)->setDescription("");
+        (*iter)->setWeight("");
+    }
+
+    for (auto iter = m_parameters.begin(); iter != m_parameters.end(); ++iter)
+    {
+        (*iter)->setDescription("");
+        (*iter)->setWeight("");
+    }
+
+    emit urlChanged();
+    emit descriptionChanged();
+    emit parametersChanged();
+    emit descriptionsChanged();
+    emit resultChanged();
 }

@@ -44,6 +44,8 @@ qt_add_resources(appAIKW "images"
           images/Trash.svg
           images/TrashHover.svg
           images/Down.svg
+          images/Copy.svg
+          images/FormatPainter.svg
 )
 
 qt_add_resources(appAIKW "qt_quick_controls_2_conf"

@@ -59,7 +59,6 @@ ColumnLayout {
         }
     }
 
-
     ColumnLayout {
         spacing: root.gap
 
@@ -91,11 +90,11 @@ ColumnLayout {
                     weight: generation.descriptions[index].weight
 
                     onDescriptionChanged: {
-                        generation.descriptions[index].description = description;
+                        generation.descriptions[index].description = description
                     }
 
                     onWeightChanged: {
-                        generation.descriptions[index].weight = weight;
+                        generation.descriptions[index].weight = weight
                     }
 
                     onDeleted: {
@@ -103,7 +102,6 @@ ColumnLayout {
                     }
                 }
             }
-
         }
     }
 
@@ -137,12 +135,12 @@ ColumnLayout {
                     parameter: generation.parameters[index].description
                     weight: generation.parameters[index].weight
 
-                    onParameterChanged: (param) => {
-                                         generation.parameters[index].description = parameter;
+                    onParameterChanged: param => {
+                                            generation.parameters[index].description = parameter
                                         }
 
                     onWeightChanged: {
-                        generation.parameters[index].weight = weight;
+                        generation.parameters[index].weight = weight
                     }
 
                     onDeleted: {
@@ -150,7 +148,6 @@ ColumnLayout {
                     }
                 }
             }
-
         }
     }
 
@@ -176,14 +173,72 @@ ColumnLayout {
 
         Layout.topMargin: 100
 
-        Title {
-            title: '生成结果'
+        RowLayout {
+            Title {
+                title: '生成结果'
 
-            Layout.preferredHeight: 14
-            Layout.fillWidth: true
+                Layout.fillWidth: true
+            }
+
+            RowLayout {
+                spacing: 20
+
+                MouseArea {
+                    width: 50
+                    height: 14
+
+                    Layout.preferredWidth: 50
+
+                    RowLayout {
+                        spacing: 2
+
+                        Image {
+                            source: '/images/FormatPainter.svg'
+
+                            width: 16
+                            height: 16
+                        }
+
+                        Text {
+                            text: '清空'
+
+                            font.pixelSize: 14
+                        }
+                    }
+
+                    onPressed: generation.clear()
+                }
+
+                MouseArea {
+                    width: 50
+                    height: 14
+                    Layout.preferredWidth: 50
+
+                    RowLayout {
+                        spacing: 2
+
+                        Image {
+                            source: '/images/Copy.svg'
+
+                            width: 16
+                            height: 16
+                        }
+
+                        Text {
+                            text: '复制'
+
+                            font.pixelSize: 14
+                        }
+                    }
+
+                    onPressed: generation.copy()
+                }
+            }
         }
 
         InputArea {
+            readOnly: true
+
             text: generation.result ?? ''
 
             Layout.fillWidth: true
@@ -194,8 +249,8 @@ ColumnLayout {
     Component.onCompleted: {
         const { os } = Qt.platform
 
-        if (os === 'windows') {
-            root.gap = 20
+            if (os === 'windows') {
+                root.gap = 20
+            }
         }
     }
-}

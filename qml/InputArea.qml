@@ -5,6 +5,7 @@ Rectangle {
     readonly property string textColor: '#1D2126'
 
     property alias text: edit.text
+    property alias readOnly: edit.readOnly
     property string placeholder: ''
 
     id: root
