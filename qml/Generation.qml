@@ -86,11 +86,9 @@ ColumnLayout {
 
                 Description {
                     required property int index
-                    required property string description
-                    required property string weight
 
-                    description: description
-                    weight: weight
+                    description: generation.descriptions[index].description
+                    weight: generation.descriptions[index].weight
 
                     onDescriptionChanged: {
                         generation.descriptions[index].description = description;
@@ -135,11 +133,9 @@ ColumnLayout {
 
                 ParamSelect {
                     required property int index
-                    required property string description
-                    required property string weight
 
-                    parameter: description
-                    weight: weight
+                    parameter: generation.parameters[index].description
+                    weight: generation.parameters[index].weight
 
                     onParameterChanged: (param) => {
                                          generation.parameters[index].description = parameter;
@@ -159,7 +155,7 @@ ColumnLayout {
     }
 
     ColumnLayout {
-        spacing: root.gap
+        id: offical
 
         Title {
             title: 'MJ官方参数'
@@ -172,6 +168,26 @@ ColumnLayout {
             columns: 3
             rowSpacing: 10
             columnSpacing: 40
+        }
+    }
+
+    ColumnLayout {
+        spacing: root.gap
+
+        Layout.topMargin: 100
+
+        Title {
+            title: '生成结果'
+
+            Layout.preferredHeight: 14
+            Layout.fillWidth: true
+        }
+
+        InputArea {
+            text: generation.result ?? ''
+
+            Layout.fillWidth: true
+            Layout.preferredHeight: 80
         }
     }
 
