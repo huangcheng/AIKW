@@ -63,5 +63,4 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 4
     }
-
 }

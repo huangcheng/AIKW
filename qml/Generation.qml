@@ -199,13 +199,14 @@ ColumnLayout {
                 }
 
                 Select {
-                    currentIndex: model.findIndex((item) => item === generation.version)
+                    currentIndex: model.findIndex(
+                                      item => item === generation.version)
                     model: ['--v 5.2', '--v 5.1', '--niji 5 --style cute', '--niji 5 --style scenic']
                     placeholder: '不同版本模型'
 
-                    onActivated: (index) => {
-                        generation.version = model[index]
-                    }
+                    onActivated: index => {
+                                     generation.version = model[index]
+                                 }
 
                     Layout.fillWidth: true
                     Layout.preferredHeight: 34
@@ -292,13 +293,14 @@ ColumnLayout {
                 }
 
                 Select {
-                    currentIndex: model.findIndex((item) => item === generation.aspect)
+                    currentIndex: model.findIndex(
+                                      item => item === generation.aspect)
                     model: ['3:4', '16:9', '21:9', '9:16']
                     placeholder: '宽高比'
 
-                    onActivated: (index) => {
-                        generation.aspect = model[index]
-                    }
+                    onActivated: index => {
+                                     generation.aspect = model[index]
+                                 }
 
                     Layout.fillWidth: true
                     Layout.preferredHeight: 34
@@ -402,7 +404,7 @@ ColumnLayout {
         InputArea {
             readOnly: true
 
-            text: generation.prompt ?? ''
+            text: '/imagine prompt: ' + generation.prompt ?? ''
 
             Layout.fillWidth: true
             Layout.preferredHeight: 80
@@ -410,10 +412,8 @@ ColumnLayout {
     }
 
     Component.onCompleted: {
-        const { os } = Qt.platform
-
-            if (os === 'windows') {
-                root.gap = 20
-            }
+        if (Qt.platform.os === 'windows') {
+            root.gap = 20
         }
     }
+}

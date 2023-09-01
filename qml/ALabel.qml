@@ -9,8 +9,6 @@ Rectangle {
     Text {
         id: text
 
-        font.pixelSize: 14
-
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: 10
         anchors.left: parent.left

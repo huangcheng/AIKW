@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QList>
 #include <QClipboard>
+#include <QRegularExpression>
 #include <QGuiApplication>
 #include <QQmlListProperty>
 

@@ -1,7 +1,7 @@
 #include "generation.h"
 
 Generation::Generation(QObject *parent)
-    : QObject{parent}, m_prompt{"/imagine prompt:"}
+    : QObject{parent}
 {
     for (size_t i = 0; i < 3; ++i)
     {
@@ -114,7 +114,7 @@ QQmlListProperty<Description> Generation::parameters()
 
 void Generation::generate()
 {
-    QString result = "/imagine prompt:";
+    QString result = "";
 
     if (!m_url.isEmpty())
     {
@@ -126,7 +126,11 @@ void Generation::generate()
         result += " " + m_description;
     }
 
-    for (auto it = m_descriptions.begin(); it != m_descriptions.end(); ++it)
+    QList<Description *> list = QList<Description*>::fromList(m_descriptions);
+
+    list.append(m_parameters);
+
+    for (auto it = list.begin(); it != list.end(); ++it)
     {
         if ((*it)->description().isEmpty())
         {
@@ -141,24 +145,13 @@ void Generation::generate()
         {
             result += "::" + weight;
         }
+
+        result += ",";
     }
 
-    for (auto it = m_parameters.begin(); it != m_parameters.end(); ++it)
-    {
-        if ((*it)->description().isEmpty())
-        {
-            continue;
-        }
+    static QRegularExpression re(",$");
 
-        result += " " + (*it)->description();
-
-        QString weight = (*it)->weight();
-
-        if (!weight.isEmpty() && weight != "0")
-        {
-            result += "::" + weight;
-        }
-    }
+    result.replace(re, "");
 
     if (!m_style.isEmpty())
     {
@@ -280,7 +273,7 @@ void Generation::copy()
 }
 
 void Generation::clear() {
-    m_prompt = "/imagine prompt:";
+    m_prompt = "";
 
     setUrl("");
     setDescription("");
