@@ -51,6 +51,8 @@ int main(int argc, char *argv[])
 
     context->setContextProperty("generation", &generation);
 
+    engine.addImportPath(QStringLiteral(":/"));
+
     engine.loadFromModule("AIKW", "Main");
 
     return app.exec();
